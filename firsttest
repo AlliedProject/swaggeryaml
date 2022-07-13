@@ -1,0 +1,640 @@
+openapi: 3.0.0
+info:
+  title: Fetch Balance
+  description: The corporate can check the account balance for specific currency using the fetch corporate balance service.
+  version: 1.0.0
+servers: 
+  - url: https://apibankingonesandbox.icicibank.com
+paths:
+  /services/apimgr/fetchBalance:
+    post:
+      tags: 
+        - Fetch Balance
+      description: Balance Enquiry
+      operationId: Request
+      requestBody: 
+        description: Request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FetchBalanceRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/FetchBalanceRequest'
+      parameters: 
+         - name: apikey
+           in: header
+           description: This is used for authentication.
+           required: true
+           schema: 
+            type: string
+           example: l74ur2irg7r7fey8f2eo78
+      responses:
+        "200":
+          description: "Successful response"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "408":
+          description: "Request Timeout"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchBalanceResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/FetchBalanceResponse'
+  /services/apimgr/recall:
+    post:
+      tags: 
+        - Recall API
+      description: Recall API
+      operationId: RecallRequest
+      requestBody:
+        description: Request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/recallRequest'
+      parameters: 
+         - name: apikey
+           in: header
+           description: This is used for authentication.
+           required: true
+           schema: 
+            type: string
+           example: l74ur2irg7r7fey8f2eo78
+      responses:
+        "200":
+          description: "Successful response"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "408":
+          description: "Request Timeout"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/recallResponse'
+  /services/apimgr/addtransaction:
+    post:
+      tags: 
+        - Addtransaction API
+      description: Addtransacion API
+      operationId: AddtransactionRequest
+      requestBody:
+        description: Request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/addtransactionRequest'
+      parameters: 
+         - name: apikey
+           in: header
+           description: This is used for authentication.
+           required: true
+           schema: 
+            type: string
+           example: l74ur2irg7r7fey8f2eo78
+      responses:
+        "200":
+          description: "Successful response"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "408":
+          description: "Request Timeout"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/addtransactionResponse'
+  /services/apimgr/statuscheck:
+    post:
+      tags: 
+        - StatusCheck API
+      description: StatusCheck API
+      operationId: StatusCheckRequest
+      requestBody:
+        description: Request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/statuscheckRequest'
+      parameters: 
+         - name: apikey
+           in: header
+           description: This is used for authentication.
+           required: true
+           schema: 
+            type: string
+           example: l74ur2irg7r7fey8f2eo78
+      responses:
+        "200":
+          description: "Successful response"
+        "400":
+          description: "Bad Request"
+        "401":
+          description: "Unauthorized"
+        "408":
+          description: "Request Timeout"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/statuscheckResponse'
+components:
+  schemas:
+    FetchBalanceRequest:
+     type: object
+     required: 
+      - TimeStamp
+      - Currency
+      - UserId
+      - CorporateId
+      - Password
+      - ReqId
+     properties: 
+       TimeStamp:
+        type: string
+        example: 1560859427549
+       Currency:
+        type: string
+        example: USD
+       UerId: 
+        type: string
+        example: APIUSER
+       CorporateId:
+        type: string
+        example: ICICIWORLD
+       Password: 
+        type: string
+        example: A1BF73A1CA8B8081C916E4F8358B9DED4
+       Reqid:
+        type: string
+        example: JJ0203202253
+    
+    FetchBalanceResponse:
+      type: object
+      required: 
+        - Status
+        - UserId
+        - Currency
+        - CorporateId
+        - Balance
+        - StatusCode
+      properties: 
+       Status:
+        type: string
+        example: Success
+       UserId:
+        type: string
+        example: APIUSER
+       Currency: 
+        type: string
+        example: USD
+       CorporateId:
+        type: string
+        example: ICICIWORLD
+       Balance: 
+        type: string
+        example: 6500.00
+       StatusCode:
+        type: string
+        example: 0
+     
+    recallRequest:
+      type: object
+      required: 
+        - UserId
+        - CorporateId
+        - Password
+        - TimeStamp
+        - RecallReason
+        - TransactionReferenceNo
+        - ReqId
+      properties: 
+         UserId:
+          type: string
+          example: APIUSER
+         CorporateId:
+          type: string
+          example: ICICIWORLD
+         Password: 
+          type: string
+          example: A1BF73A1CA8B8081C916E4F8358B9DED4
+         TimeStamp:
+          type: string
+          example: 1560859427549
+         RecallReason: 
+          type: string
+          example: Bank request
+         TransactionReferenceNo: 
+          type: string
+          example: QACFEB1806
+         Reqid:
+          type: string
+          example: JJ0203202262
+        
+    recallResponse:
+      type: object
+      required: 
+        - UserId
+        - CorporateId
+        - Password
+        - TimeStamp
+        - RecallReason
+        - TransactionReferenceNo
+        - ReqId
+      properties:
+         UserId:
+          type: string
+          example: APIUSER
+         CorporateId:
+          type: string
+          example: ICICIWORLD
+         Password: 
+          type: string
+          example: A1BF73A1CA8B8081C916E4F8358B9DED4
+         TimeStamp:
+          type: string
+          example: 1560859427549
+         RecallReason: 
+          type: string
+          example: Bank request
+         TransactionReferenceNo: 
+          type: string
+          example: QACFEB1806
+         Reqid:
+          type: string
+          example: JJ0203202262
+
+    addtransactionRequest:
+      type: object
+      required: 
+        - UserId
+        - CorporateId
+        - Password
+        - TimeStamp
+        - HedrAdnlFld1
+        - HedrAdnlFld2
+        - HedrAdnlFld3
+        - ReqId
+        - Transaction
+      properties:
+         UserId:
+          type: string
+          example: 7032113359
+         CorporateId:
+          type: string
+          example: ICICIWORLD
+         Password: 
+          type: string
+          example: A1BF73A1CA8B8081C916E4F8358B9DED4
+         TimeStamp:
+          type: string
+          example: 1615898526291
+         HedrAdnlFld1: 
+          type: string
+          example: ""
+         HedrAdnlFld2: 
+          type: string
+          example: ""
+         HedrAdnlFld3: 
+          type: string
+          example: ""
+         Reqid: 
+          type: string
+          example: JJ0203202253
+         Transaction:
+          type: array
+          items: 
+            oneOf:
+              - type: object
+                required:
+                  - BeneficiaryDetails
+                properties:
+                  BeneficiaryDetails:
+                    type: object
+                    required:
+                    - BeneName
+                    - BeneAcctNo
+                    - BeneIFSCCode
+                    - BeneBank
+                    - BenePAN
+                    - BeneEmailId
+                    - BeneMobNo
+                    - BeneAddress1
+                    - BeneAddress2
+                    - BeneAddress3
+                    - BeneZIP
+                    - BeneCountry
+                    - BeneIdentities
+                    - BeneAdnlFld1
+                    - BeneAdnlFld2
+                    - BeneAdnlFld3
+                    properties:
+                      BeneName:
+                        type: string
+                        example: Vairerbhav
+                      BeneAcctNo:
+                        type: string
+                        example: 9963258741963258741
+                      BeneIFSCCode:
+                        type: string
+                        example: ICIC0000419
+                      BeneBank:
+                        type: string
+                        example: ICICI
+                      BenePAN:
+                        type: string
+                        example: CMEYR5874K
+                      BeneEmailId:
+                        type: string
+                        example: test@test.com
+                      BeneMobNo:
+                        type: string
+                        example: 9963258741
+                      BeneAddress1:
+                        type: string
+                        example: Mumbai
+                      BeneAddress2:
+                        type: string
+                        example: Maharashtra
+                      BeneAddress3:
+                        type: string
+                        example: India
+                      BeneZIP:
+                        type: string
+                        example: ASDDDS102
+                      BeneCountry:
+                        type: string
+                        example: India
+                      BeneIdentities:
+                        type: string
+                        example: 213ERFDCVFDSDS
+                      BeneAdnlFld1:
+                        type: string
+                        example: ""
+                      BeneAdnlFld2:
+                        type: string
+                        example: ""
+                      BeneAdnlFld3:
+                        type: string
+                        example: ""
+              - type: object
+                required:
+                  - TransactionDetails
+                properties:
+                  TransactionDetails:
+                    type: object
+                    required: 
+                    - ValueDate
+                    - TransactionReferenceNo
+                    - Currency
+                    - RmtrCountryCode
+                    - TransferAmount
+                    - BankPurposeId
+                    - PaymentType
+                    - IdType
+                    - IdNumber
+                    - IdCountry
+                    - TxnAdnlFld1
+                    - TxnAdnlFld2
+                    - TxnAdnlFld3
+                    - TxnAdnlFld4
+                    - TxnAdnlFld5
+                    - TxnFundRefNum
+                    properties:
+                      ValueDate:
+                        type: string
+                        example: 23/12/2021
+                      TransactionReferenceNo:
+                        type: string
+                        example: APitest89p45678
+                      Currency:
+                        type: string
+                        example: BIT
+                      RmtrCountryCode:
+                        type: string
+                        example: US
+                      TransferAmount:
+                        type: string
+                        example: 100
+                      BankPurposeId:
+                        type: string
+                        example: PIDGH
+                      PaymentType:
+                        type: string
+                        example: 5
+                      IdType:
+                        type: string
+                        example: Aadhar
+                      IdNumber:
+                        type: string
+                        example: 12345123451234512345
+                      IdCountry:
+                        type: string
+                        example: VG
+                      TxnAdnlFld1:
+                        type: string
+                        example: ""
+                      TxnAdnlFld2:
+                        type: string
+                        example: ""
+                      TxnAdnlFld3:
+                        type: string
+                        example: ""
+                      TxnAdnlFld4:
+                        type: string
+                        example: ""
+                      TxnAdnlFld5:
+                        type: string
+                        example: ""
+                      TxnFundRefNum:
+                        type: string
+                        example: ADRTET12345
+    addtransactionResponse:
+      type: object
+      required: 
+        - Status
+        - Amount 
+        - CorporateId
+        - FCY
+        - StatusCode
+        - TransactionReferenceNumber
+      properties:
+         Status:
+          type: string
+          example: Transaction Received
+         Amount:
+          type: string
+          example: 200.00
+         CorporateId: 
+          type: string
+          example: ICICIWORLD
+         FCY:
+          type: string
+          example: USD
+         StatusCode: 
+          type: string
+          example: 1001
+         TransactionReferenceNumber: 
+          type: string
+          example: ASDERHHFERT59147
+
+    statuscheckRequest:
+     type: object
+     required: 
+      - TransactionReferenceNo
+      - UserId
+      - CorporateId
+      - Password
+      - TimeStamp
+      - StsAdnlFld1
+      - StsAdnlFld2
+      - StsAdnlFld3
+      - StsAdnlFld4
+      - ReqId
+     properties: 
+       TransactionReferenceNo:
+        type: string
+        example: SHRTGS1625817792542
+       UserId:
+        type: string
+        example: 4735112677
+       CorporateId: 
+        type: string
+        example: SPRINT2FRESHCORPORATETEST  
+       Password:
+        type: string
+        example: A1BF73A1CA8B8081C916E4F8358B9DED4
+       TimeStamp: 
+        type: string
+        example: 24012019161300
+       StsAdnlFld1: 
+        type: string
+        example: ""
+       StsAdnlFld2: 
+        type: string
+        example: ""
+       StsAdnlFld3: 
+        type: string
+        example: ""
+       StsAdnlFld4: 
+        type: string
+        example: ""
+       Reqid:
+        type: string
+        example: JJ0203202253
+        
+    statuscheckResponse:
+     type: object
+     required: 
+      - PONumber
+      - ATTEMPTNO
+      - ReqTransferType
+      - RequestReferenceNo
+      - StatusCode
+      - BankCharges
+      - RRNNumber
+      - InvoiceNumber
+      - TransactionReferenceNo
+      - TransactionDate
+      - UTRNumber
+      - RefNumber
+      - PayeeIfsc
+      - GST
+      - BankReferenceNo
+      - TransferType
+      - SubStatusText
+      - PayeeAccountNo
+      - TransactionTime
+      - SubStatusCode
+      - CorporateID
+      - FaultReason
+      - FCYAmount
+      - FCY
+     properties: 
+       PONumber:
+        type: string
+        example: ""
+       ATTEMPTNO:
+        type: string
+        example: 0
+       ReqTransferType: 
+        type: string
+        example: ""  
+       RequestReferenceNo:
+        type: string
+        example: ""
+       StatusCode: 
+        type: string
+        example: 301
+       BankCharges: 
+        type: string
+        example: ""
+       RRNNumber: 
+        type: string
+        example: ""
+       InvoiceNumber: 
+        type: string
+        example: ""
+       TransactionReferenceNo: 
+        type: string
+        example: 5344587824
+       TransactionDate:
+        type: string
+        example: ""
+       UTRNumber:
+        type: string
+        example: ""
+       RefNumber:
+        type: string
+        example: AP1110223918
+       PayeeIfsc: 
+        type: string
+        example: ICIC0006889  
+       GST:
+        type: string
+        example: ""
+       BankReferenceNo: 
+        type: string
+        example: ""
+       TransferType: 
+        type: string
+        example: 5
+       SubStatusText: 
+        type: string
+        example: TestStatus
+       PayeeAccountNo: 
+        type: string
+        example: 23465665712345
+       TransactionTime: 
+        type: string
+        example: 2021-11-18 13:27:17.877
+       SubStatusCode:
+        type: string
+        example: 101
+       CorporateID: 
+        type: string
+        example: ICICIWORLD
+       FaultReason: 
+        type: string
+        example: ""
+       FCYAmount: 
+        type: string
+        example: 500.00
+       FCY:
+        type: string
+        example: USD
+      
+      
+           
+  
+  
